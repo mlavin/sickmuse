@@ -1,3 +1,7 @@
+/*
+Colors based on: http://www.colourlovers.com/palette/2402401/Candy_Muse
+*/
+
 body {
     // http://subtlepatterns.com/3px-tile/
     background: url('/static/img/px_tile.png');
@@ -12,6 +16,12 @@ body > .main {
 }
 
 .navbar {
+    .logo {
+        float: left;
+        padding: ((@navbarHeight - 32) / 2) 0;
+        margin-right: 5px;
+    }
+
     .tagline {
         display: block;
         padding: ((@navbarHeight - @baseLineHeight) / 2) 0;
