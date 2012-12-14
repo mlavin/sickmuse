@@ -28,11 +28,7 @@
                 yaxis: {tickDecimals: 4},
                 grid: {hoverable: true, clickable: true},
                 legend: {
-                    container: $('#' + $(elem).attr('id') + '-legend'),
-                    labelFormatter: function(label, series) {
-                        // Underscore or Handlebars would help here
-                        return '<a href="#' + label + '">' + label + '</a>';
-                    }
+                    container: $('#' + $(elem).attr('id') + '-legend')
                 }
             });
 

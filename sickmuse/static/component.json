@@ -1,0 +1,13 @@
+{
+  "name": "rightround",
+  "version": "0.1.0",
+  "main": [
+    "./css/rightround.css",
+    "./js/rightround.js"
+  ],
+  "dependencies": {
+    "bootstrap": "~2.2.0",
+    "font-awesome": "~2.0.0",
+    "flot": "latest"  
+  }
+}

@@ -10,3 +10,4 @@ docs/_build/*
 dist/*
 build/*
 *.egg-info/*
+sickmuse/static/libs/*
