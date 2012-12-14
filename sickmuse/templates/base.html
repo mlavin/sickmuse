@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sick Muse - a Collectd Front-end</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sick Muse is a front-end for Collectd round robin database files.">
+    <meta name="author" content="Mark Lavin">
+    <link href="{{ static_url('css/sickmuse.css') }}" rel="stylesheet">
+    {% block extra-css %}{% end %}
+</head>
+<body id="{% block body-id %}body{% end %}" {% block body-data %}{% end %}>
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="/">Sick Muse</a>
+                <span class="tagline">a <a href="http://collectd.org/">Collectd</a> front-end.</span>
+            </div>
+        </div>
+    </div>
+    <div class="main container">
+        {% block breadcrumb-wrapper %}
+        <ul class="breadcrumb">
+            {% block breadcrumb-items %}
+            <li><a href="/">Home</a></li>
+            {% end %}
+        </ul>
+        {% end %}
+        {% block content %}{% end %}
+    </div>
+    {% block footer %}{% end %}
+    <script src="{{ static_url('libs/jquery/jquery.min.js') }}"></script>
+    {% block extra-js %}{% end %}
+</body>
+</html>

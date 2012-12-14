@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body-id %}host{% end %}
+
+{% block body-data %}data-spy="scroll" data-target="#pluginbar"{% end %}
+
+{% block extra-js %}
+    <script src="{{ static_url('libs/flot/jquery.flot.js') }}"></script>
+    <script src="{{ static_url('libs/flot/jquery.flot.stack.js') }}"></script>
+    <script src="{{ static_url('libs/flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ static_url('libs/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ static_url('libs/bootstrap/js/bootstrap-scrollspy.js') }}"></script>
+    <script src="{{ static_url('js/sickmuse.js') }}"></script>
+{% end %}
+
+{% block breadcrumb-items %}
+    <li><a href="/">Home</a> <span class="divider">/</span></li> <li>{{ host_name }}</li>
+{% end %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <h1><i class="icon-hdd"></i> {{ host_name }}</h1>
+            {% for name in host_info['plugins'] %}
+            <h3 id="{{ name }}-graph"><i class="icon-bar-chart"></i> {{ name }}</h3>
+            <div class="row-fluid">
+                <div id="{{ name }}-graph-canvas" class="plugin-graph span10"
+                    data-url="/api/{{ host_name }}/{{ name }}"></div>
+                <div id="{{ name }}-graph-canvas-legend" class="plugin-legend span2"></div>
+            </div>
+            {% end %}
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <div id="pluginbar" class="navbar navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav">
+                    {% for index, name in enumerate(host_info['plugins']) %}
+                        <li{% if index == 0 %} class="active" {% end %}><a href="#{{ name }}-graph">{{ name }}</a></li>
+                    {% end %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% end %}

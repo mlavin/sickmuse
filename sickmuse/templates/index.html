@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body-id %}home{% end %}
+
+{% block breadcrumb-wrapper %}{% end %}
+
+{% block content %}
+    <h1><i class="icon-dashboard"></i> Available Hosts</h1>
+    {% set last = len(plugin_info) - 1 %}
+    {% for index, host in enumerate(plugin_info) %}
+        {% if index == 0 %}
+            <div class="row-fluid hosts">
+        {% end %}
+        <div class="span6 host">
+            <h3><i class="icon-hdd"></i> <a href="/host/{{ host }}">{{ host }}</a></h3>
+            <span class="badge badge-info">{{ len(plugin_info[host]['plugins']) }} Plugins</span>
+            {{ ', '.join(plugin_info[host]['plugins']) }}
+        </div>
+        {% if index % 2 == 1 or index == last  %}
+            </div>
+            {% if index != last %}
+                <div class="row-fluid hosts">
+            {% end %}
+        {% end %}
+    {% end %}
+{% end %}

@@ -1,4 +1,4 @@
-Sick Muse - Collectd Frontend
+Sick Muse - Collectd Front-end
 ========================================
 
 Sick Muse is an open source web application graphing RRD data stored by
