@@ -1,0 +1,39 @@
+body {
+    // http://subtlepatterns.com/3px-tile/
+    background: url('/static/img/px_tile.png');
+}
+
+body > .main {
+    margin-top: @baseLineHeight;
+    margin-bottom: @navbarHeight * 3;
+    padding: 20px;
+    background: white;
+    .border-radius(5px);
+}
+
+.navbar {
+    .tagline {
+        display: block;
+        padding: ((@navbarHeight - @baseLineHeight) / 2) 0;
+    }
+}
+
+#home {
+    .hosts {
+        .host {
+            background: @white;
+            .border-radius(10px);
+            .box-shadow(0 0 10px rgba(0,0,0,.25));
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+#host {
+
+    .plugin-graph {
+        height: 300px;
+    }
+
+}
