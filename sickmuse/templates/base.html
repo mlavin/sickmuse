@@ -31,7 +31,19 @@
         {% end %}
         {% block content %}{% end %}
     </div>
-    {% block footer %}{% end %}
+    {% block footer %}
+    <div id="footer" class="navbar navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                Built with <a href="http://www.tornadoweb.org/" target="_blank">Tornado Web</a> and
+                <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>.
+                Graphs by <a href="http://www.flotcharts.org/" target="_blank">Flot</a>.
+                Icons by <a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>.
+                Logo based on <a href="http://thenounproject.com/noun/heart/#icon-No8607" target="_blank">Heart</a> designed by <a href="http://thenounproject.com/HenrikLundMikkelsen" target="_blank">Henrik Lund Mikkelsen</a> from The Noun Project.
+            </div>
+        </div>
+    </div>
+    {% end %}
     <script src="{{ static_url('libs/jquery/jquery.min.js') }}"></script>
     {% block extra-js %}{% end %}
 </body>
