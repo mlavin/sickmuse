@@ -20,12 +20,19 @@
             });
             
             $.plot($(elem), series, {
+                colors: ["#DE5090", "#84C7E2", "#F7BECA", '#F2355B', '#FFDAC9', "#D4EDF4" ],
                 series: {
                     stack: true,
-                    lines: {show: true, fill: true, steps: false}
+                    lines: {
+                        show: true,
+                        fill: true,
+                        steps: false,
+                        lineWidth: 1
+                    },
+                    shadowSize: 1
                 },
                 xaxis: {mode: "time", timezone: "browser"},
-                yaxis: {tickDecimals: 4},
+                yaxis: {tickDecimals: 3},
                 grid: {hoverable: true, clickable: true},
                 legend: {
                     container: $('#' + $(elem).attr('id') + '-legend')
