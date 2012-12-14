@@ -5,14 +5,25 @@ import rrdtool
 
 from tornado.web import RequestHandler, HTTPError
 
+class TemplateHandler(RequestHandler):
+    "Add common elements to the template namespace."
 
-class RootHandler(RequestHandler):
+    def get_template_namespace(self):
+        namespace = super(TemplateHandler, self).get_template_namespace()
+        namespace.update({
+            'plugin_info': self.application.plugin_info,
+            'debug': self.application.settings.get('debug', False),
+        })
+        return namespace
+
+
+class RootHandler(TemplateHandler):
     
     def get(self):
-        self.render("index.html", plugin_info=self.application.plugin_info)
+        self.render("index.html")
 
 
-class HostHandler(RequestHandler):
+class HostHandler(TemplateHandler):
     
     def get(self, host_name):
         if host_name not in self.application.plugin_info:
@@ -20,7 +31,6 @@ class HostHandler(RequestHandler):
         context = {
             'host_name': host_name,
             'host_info': self.application.plugin_info[host_name],
-            'plugin_info': self.application.plugin_info
         }
         self.render("host-detail.html", **context)
 
