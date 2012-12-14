@@ -2,6 +2,7 @@
     $('.plugin-graph').each(function (i, elem) {
         var url = $(elem).data('url');
         var series = [];
+        var id = $(elem).attr('id');
         $.getJSON(url, function (data) {
             // Fetch data and build the graph
             series = [];
@@ -19,7 +20,7 @@
                 });
             });
             
-            $.plot($(elem), series, {
+            var plot = $.plot($(elem), series, {
                 colors: ["#DE5090", "#84C7E2", "#F7BECA", '#F2355B', '#FFDAC9', "#D4EDF4" ],
                 series: {
                     stack: true,
@@ -35,9 +36,16 @@
                 yaxis: {tickDecimals: 3},
                 grid: {hoverable: true, clickable: true},
                 legend: {
-                    container: $('#' + $(elem).attr('id') + '-legend')
+                    container: $('#' + id + '-legend'),
+                    labelFormatter: function(label, series) {
+                        // Underscore or Handlebars would help here
+                        return '<a class="badge">' + label + '</a>';
+                    }
                 }
             });
+            // Store the plot and the original data set
+            $(elem).data('series', series);            
+            $(elem).data('plot', plot);
 
             var previousPoint = null;
             $(elem).bind("plothover", function (event, pos, item) {
@@ -71,5 +79,5 @@
             });
             
         });
-    })
+    });
 })(jQuery);
