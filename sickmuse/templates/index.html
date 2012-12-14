@@ -13,7 +13,7 @@
         {% end %}
         <div class="span6 host">
             <h3><i class="icon-hdd"></i> <a href="/host/{{ host }}">{{ host }}</a></h3>
-            <span class="badge badge-info">{{ len(plugin_info[host]['plugins']) }} Plugins</span>
+            <span class="badge">{{ len(plugin_info[host]['plugins']) }} Plugins</span>
             {{ ', '.join(plugin_info[host]['plugins']) }}
         </div>
         {% if index % 2 == 1 or index == last  %}
