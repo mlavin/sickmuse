@@ -46,10 +46,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
         },
         render: function () {
             var self = this;
-            var series = _.map(this.model.get('metrics'), function (data, name) {
-                return {label: name, data: data.series};
-            });
-            this.graph(series, true);
+            this.graph(true);
             // Remove current legend to create a better one
             var oldLegend = $('.legend', this.$el).detach();
             $('tr', oldLegend).each(function (index, row) {
@@ -78,23 +75,17 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                     previousPoint = null;            
                 }
             });
-            this.legend.on('click', 'li', function(e) {
-                var inactive = [], active = [];
+            this.legend.on('click', 'li > a', function(e) {
                 e.preventDefault();
-                $(this).toggleClass('disabled');
-                // Regraph with the current set of active items
-                // FIXME: Don't store this state in the DOM
-                $('li.disabled a[data-label]', self.legend).each(function (i, label) {
-                    inactive.push($(label).data('label'));
-                });
-                active = _.omit(self.model.get('metrics'), inactive);
-                series = _.map(active, function (data, name) {
-                    return {label: name, data: data.series};
-                });
-                self.graph(series, false);
+                $(this).parent('li').toggleClass('disabled');
+                self.model.toggleSeries($(this).data('label'));
+                self.graph(false);
             });
         },
-        graph: function(series, legend) {
+        graph: function(legend) {
+            var series = _.map(this.model.activeMetrics(), function (data, name) {
+                return {label: name, data: data.series};
+            });
             this.plotOptions.legend.show = legend;
             this.plot = $.plot(this.$el, series, this.plotOptions);
         }

@@ -15,8 +15,22 @@ define(['underscore', 'backbone'], function (_, Backbone) {
                     return [x, y];
                 });
                 metric.series = series;
+                metric.active = true;
             });
             return {'metrics': metrics};
+        },
+        activeMetrics: function () {
+            var metrics = {};
+            _.each(this.get('metrics'), function (data, name) {
+                if (data.active) {
+                    metrics[name] = data
+                }
+            });
+            return metrics;
+        },
+        toggleSeries: function (label) {
+            var metrics = this.get('metrics');
+            metrics[label].active = !metrics[label].active;
         }
     });
     return HostPluginModel;
