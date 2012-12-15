@@ -8,14 +8,23 @@ require.config({
         flotstack: '../libs/flot/jquery.flot.stack',
         flottime: '../libs/flot/jquery.flot.time',
         flotresize: '../libs/flot/jquery.flot.resize',
-        scrollspy: '../libs/bootstrap/js/bootstrap-scrollspy'
+        scrollspy: '../libs/bootstrap/js/bootstrap-scrollspy',
+        backbone: '../libs/backbone/backbone',
+        underscore: '../libs/underscore/underscore',
     },
     shim: {
         flot: jQueryPluginShim,
         flotstack: flotPluginShim,
         flottime: flotPluginShim,
         flotresize: flotPluginShim,
-        scrollspy: jQueryPluginShim
+        scrollspy: jQueryPluginShim,
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+        underscore: {
+            exports: '_'
+        }
     }
 });
 

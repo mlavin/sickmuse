@@ -28,10 +28,12 @@ In addition to the previously listed Python dependencies, this library makes use
 the following projects which are included in the distribution:
 
 - Twitter Bootstrap (Licensed under Apache v2)
-- Require.JS (Licensed under BSD/MIT)
+- RequireJS (Licensed under BSD/MIT)
 - jQuery (Licensed under MIT)
 - Font Awesome (Licensed under CC BY 3.0)
 - Flot (Licensed under MIT)
+- Backbone (Licensed under MIT)
+- Underscore (Licensed under MIT)
 
 
 Contributing

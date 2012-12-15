@@ -9,6 +9,7 @@
     "bootstrap": "~2.2.0",
     "font-awesome": "~2.0.0",
     "flot": "latest",
-    "requirejs": "~2.1.0"
+    "requirejs": "~2.1.0",
+    "backbone": "~0.9.0"
   }
 }
