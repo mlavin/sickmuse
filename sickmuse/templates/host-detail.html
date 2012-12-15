@@ -4,11 +4,6 @@
 
 {% block body-data %}data-spy="scroll" data-target="#pluginbar"{% end %}
 
-{% block extra-js %}
-<script data-main="/static/js/sickmuse{% if not debug %}-built{% end %}" 
-    src="{{ static_url('libs/requirejs/require.js') }}"></script>
-{% end %}
-
 {% block breadcrumb-items %}
     <li><a href="/">Home</a> <span class="divider">/</span></li> <li>{{ host_name }}</li>
 {% end %}
@@ -41,4 +36,9 @@
             </div>
         </div>
     </div>
+{% end %}
+
+{% block javascript %}
+<script data-main="/static/js/sickmuse{% if not debug %}-built{% end %}" 
+    src="{{ static_url('libs/requirejs/require.js') }}"></script>
 {% end %}

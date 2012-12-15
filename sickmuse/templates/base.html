@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sick Muse is a front-end for Collectd round robin database files.">
     <meta name="author" content="Mark Lavin">
-    {% if debug %}
-        <link rel="stylesheet/less" type="text/css" href="{{ static_url('less/sickmuse.less') }}" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.3.1/less.min.js"></script>
-    {% else %}
-        <link href="{{ static_url('css/sickmuse.css') }}" rel="stylesheet">
+    {% block css %}
+        {% if debug %}
+            <link rel="stylesheet/less" type="text/css" href="{{ static_url('less/sickmuse.less') }}" />
+            <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.3.1/less.min.js"></script>
+        {% else %}
+            <link href="{{ static_url('css/sickmuse.css') }}" rel="stylesheet">
+        {% end %}
     {% end %}
-    {% block extra-css %}{% end %}
 </head>
 <body id="{% block body-id %}body{% end %}" {% block body-data %}{% end %}>
     <div class="navbar navbar-static-top">
@@ -49,7 +50,6 @@
         </div>
     </div>
     {% end %}
-    <script src="{{ static_url('libs/jquery/jquery.min.js') }}"></script>
-    {% block extra-js %}{% end %}
+    {% block javascript %}{% end %}
 </body>
 </html>
