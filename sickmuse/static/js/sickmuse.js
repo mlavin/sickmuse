@@ -28,6 +28,5 @@ require.config({
 require(['jquery', 'views/plugin-graph'], function ($, PluginGraphView) {
     $('.plugin-graph').each(function (i, elem) {
         var view = new PluginGraphView({'el': $(elem)});
-        view.render();
     });
 });

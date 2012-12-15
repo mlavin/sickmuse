@@ -10,7 +10,15 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 '<div class="tooltip-inner"><%= content %></div>' +
                 '</div>'
             );
-            labelTemplate = _.template('<a class="badge"><%= label %></a>');
+            labelTemplate = _.template(
+                '<a data-label="<%= label %>">' +
+                '<span class="box-wrapper">' +
+                '<span class="color-box" style="border: 5px solid <%= color %>;"></span>' +
+                '</span>' +
+                '<%= label %>' +
+                '</a>'
+            );
+            this.legend = $('#' + this.$el.attr('id') + '-legend');
             this.plotOptions = {
                 colors: ["#DE5090", "#84C7E2", "#F7BECA", '#F2355B', '#FFDAC9', "#D4EDF4" ],
                 series: {
@@ -27,9 +35,8 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 yaxis: {tickDecimals: 3},
                 grid: {hoverable: true, clickable: true},
                 legend: {
-                    container: $('#' + this.$el.attr('id') + '-legend'),
                     labelFormatter: function(label, series) {
-                        return labelTemplate({label: label});
+                        return labelTemplate({label: label, color: series.color});
                     }
                 }
             };
@@ -38,10 +45,18 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
             this.model.fetch();
         },
         render: function () {
+            var self = this;
             var series = _.map(this.model.get('metrics'), function (data, name) {
                 return {label: name, data: data.series};
             });
-            this.plot = $.plot(this.$el, series, this.plotOptions);
+            this.graph(series, true);
+            // Remove current legend to create a better one
+            var oldLegend = $('.legend', this.$el).detach();
+            $('tr', oldLegend).each(function (index, row) {
+                self.legend.append(
+                    $('<li>').append($('.legendLabel', row).html())
+                );
+            });
             var previousPoint = null;
             var template = this.tooltipTemplate;
             this.$el.bind("plothover", function (event, pos, item) {
@@ -51,12 +66,6 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                         $("#tooltip").remove();
                         var x = item.datapoint[0].toFixed(2),
                             y = item.datapoint[1].toFixed(2);
-                        var html = template({
-                            top: item.pageY + 5,
-                            left: item.pageX + 5,
-                            content: item.series.label + " " + y
-                        });
-                        console.log(html);
                         $('body').append(template({
                             top: item.pageY + 5,
                             left: item.pageX + 5,
@@ -69,6 +78,25 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                     previousPoint = null;            
                 }
             });
+            this.legend.on('click', 'li', function(e) {
+                var inactive = [], active = [];
+                e.preventDefault();
+                $(this).toggleClass('disabled');
+                // Regraph with the current set of active items
+                // FIXME: Don't store this state in the DOM
+                $('li.disabled a[data-label]', self.legend).each(function (i, label) {
+                    inactive.push($(label).data('label'));
+                });
+                active = _.omit(self.model.get('metrics'), inactive);
+                series = _.map(active, function (data, name) {
+                    return {label: name, data: data.series};
+                });
+                self.graph(series, false);
+            });
+        },
+        graph: function(series, legend) {
+            this.plotOptions.legend.show = legend;
+            this.plot = $.plot(this.$el, series, this.plotOptions);
         }
     });
     return PluginGraphView;
