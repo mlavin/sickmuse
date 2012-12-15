@@ -16,7 +16,7 @@
             <h3 id="{{ name }}-graph"><i class="icon-bar-chart"></i> {{ name }}</h3>
             <div class="row-fluid">
                 <div id="{{ name }}-graph-canvas" class="plugin-graph span10"
-                    data-url="/api/{{ host_name }}/{{ name }}"></div>
+                    data-url="/api/{{ host_name }}/{{ name }}" data-host="{{ host_name }}" data-plugin="{{ name }}"></div>
                 <div id="{{ name }}-graph-canvas-legend" class="plugin-legend span2"></div>
             </div>
             {% end %}

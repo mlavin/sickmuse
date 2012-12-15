@@ -8,10 +8,14 @@ include sickmuse/static/css/*.css
 include sickmuse/static/font/*
 include sickmuse/static/img/*
 include sickmuse/static/js/*.js
+include sickmuse/static/js/models/*.js
+include sickmuse/static/js/views/*.js
 include sickmuse/static/less/*.less
+include sickmuse/static/libs/backbone/LICENSE
 include sickmuse/static/libs/bootstrap/LICENSE
 include sickmuse/static/libs/flot/LICENSE.txt
 include sickmuse/static/libs/font-awesome/README.md
 include sickmuse/static/libs/requirejs/LICENSE
 include sickmuse/static/libs/requirejs/require.js
+include sickmuse/static/libs/underscore/LICENSE
 include sickmuse/templates/*.html
