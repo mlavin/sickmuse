@@ -5,12 +5,8 @@
 {% block body-data %}data-spy="scroll" data-target="#pluginbar"{% end %}
 
 {% block extra-js %}
-    <script src="{{ static_url('libs/flot/jquery.flot.js') }}"></script>
-    <script src="{{ static_url('libs/flot/jquery.flot.stack.js') }}"></script>
-    <script src="{{ static_url('libs/flot/jquery.flot.time.js') }}"></script>
-    <script src="{{ static_url('libs/flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ static_url('libs/bootstrap/js/bootstrap-scrollspy.js') }}"></script>
-    <script src="{{ static_url('js/sickmuse.js') }}"></script>
+<script data-main="/static/js/sickmuse{% if not debug %}-built{% end %}" 
+    src="{{ static_url('libs/requirejs/require.js') }}"></script>
 {% end %}
 
 {% block breadcrumb-items %}

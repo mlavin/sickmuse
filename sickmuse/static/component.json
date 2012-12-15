@@ -8,6 +8,7 @@
   "dependencies": {
     "bootstrap": "~2.2.0",
     "font-awesome": "~2.0.0",
-    "flot": "latest"  
+    "flot": "latest",
+    "requirejs": "~2.1.0"
   }
 }
