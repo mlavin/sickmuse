@@ -3,7 +3,7 @@ var flotPluginShim = {exports: 'jQuery', deps: ['flot']};
 
 require.config({
     paths: {
-        jquery: '../libs/jquery/jquery.min',
+        jquery: '../libs/jquery/jquery',
         flot: '../libs/flot/jquery.flot',
         flotstack: '../libs/flot/jquery.flot.stack',
         flottime: '../libs/flot/jquery.flot.time',
