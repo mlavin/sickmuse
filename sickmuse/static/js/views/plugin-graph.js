@@ -2,6 +2,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
     'flotstack', 'flottime', 'flotresize', 'scrollspy'], function ($, _, Backbone, HostPluginModel) {
     var PluginGraphView = Backbone.View.extend({
         initialize: function () {
+            var self = this;
             this.plot = null;
             this.tooltipTemplate = _.template(
                 '<div id="tooltip" class="tooltip tip fade in" ' +
@@ -36,6 +37,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 grid: {hoverable: true, clickable: true},
                 legend: {
                     labelFormatter: function(label, series) {
+                        self.model.get("metrics")[label].color = series.color;
                         return labelTemplate({label: label, color: series.color});
                     }
                 }
@@ -84,7 +86,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
         },
         graph: function(legend) {
             var series = _.map(this.model.activeMetrics(), function (data, name) {
-                return {label: name, data: data.series};
+                return {label: name, data: data.series, color: data.color || null};
             });
             this.plotOptions.legend.show = legend;
             this.plot = $.plot(this.$el, series, this.plotOptions);
