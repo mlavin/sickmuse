@@ -1,0 +1,17 @@
+include README.rst
+include LICENSE
+include AUTHORS
+include sickmuse/static/.bowerrc
+include sickmuse/static/favicon.ico
+include sickmuse/static/component.json
+include sickmuse/static/css/*.css
+include sickmuse/static/font/*
+include sickmuse/static/img/*
+include sickmuse/static/js/*.js
+include sickmuse/static/less/*.less
+include sickmuse/static/libs/bootstrap/LICENSE
+include sickmuse/static/libs/flot/LICENSE.txt
+include sickmuse/static/libs/font-awesome/README.md
+include sickmuse/static/libs/requirejs/LICENSE
+include sickmuse/static/libs/requirejs/require.js
+include sickmuse/templates/*.html
