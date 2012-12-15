@@ -32,7 +32,7 @@ class APIApplication(Application):
         # From base directory: host/plugin/instance.rrd
         self.plugin_info = {} # Host --> Plugins --> Instances
         for name in glob.glob(u"%s/*/*/*.rrd" % rrd_directory):
-            name = name.lstrip(u"%s/" % rrd_directory)
+            name = name.replace(u"%s/" % rrd_directory, '')
             host, plugin = os.path.split(os.path.dirname(name))
             instance, _ = os.path.splitext(os.path.basename(name))
             info = self.plugin_info.get(host, {})
