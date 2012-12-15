@@ -17,7 +17,7 @@ body {
     background: url('/static/img/px_tile.png');
 }
 
-body > .main {
+#main {
     margin-top: @baseLineHeight;
     margin-bottom: @navbarHeight * 3;
     padding: 20px;
@@ -43,8 +43,8 @@ body > .main {
 }
 
 #footer {
-    .container {
-        padding: ((@navbarHeight - @baseLineHeight) / 2) 0;
+    .container-fluid {
+        padding: ((@navbarHeight - @baseLineHeight) / 2) 20px;
     }
 }
 

@@ -18,7 +18,7 @@
 <body id="{% block body-id %}body{% end %}" {% block body-data %}{% end %}>
     <div class="navbar navbar-static-top">
         <div class="navbar-inner">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="logo" href="/">
                     <img height="32" width="32" src="{{ static_url('img/logo.png') }}" alt="Logo">
                 </a>
@@ -27,20 +27,22 @@
             </div>
         </div>
     </div>
-    <div class="main container">
-        {% block breadcrumb-wrapper %}
-        <ul class="breadcrumb">
-            {% block breadcrumb-items %}
-            <li><a href="/">Home</a></li>
+    <div class="container-fluid">
+        <div id="main">
+            {% block breadcrumb-wrapper %}
+            <ul class="breadcrumb">
+                {% block breadcrumb-items %}
+                <li><a href="/">Home</a></li>
+                {% end %}
+            </ul>
             {% end %}
-        </ul>
-        {% end %}
-        {% block content %}{% end %}
+            {% block content %}{% end %}
+        </div>
     </div>
     {% block footer %}
     <div id="footer" class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
-            <div class="container">
+            <div class="container-fluid">
                 Built with <a href="http://www.tornadoweb.org/" target="_blank">Tornado Web</a> and
                 <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>.
                 Graphs by <a href="http://www.flotcharts.org/" target="_blank">Flot</a>.

@@ -31,7 +31,7 @@
 {% block footer %}
     <div id="pluginbar" class="navbar navbar-fixed-bottom">
         <div class="navbar-inner">
-            <div class="container">
+            <div class="container-fluid">
                 <ul class="nav">
                     {% for index, name in enumerate(host_info['plugins']) %}
                         <li{% if index == 0 %} class="active" {% end %}><a href="#{{ name }}-graph">{{ name }}</a></li>
