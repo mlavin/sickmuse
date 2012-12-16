@@ -8,7 +8,7 @@ from tornado.web import Application
 from .handlers import RootHandler, HostHandler, MetricAPIHandler
 
 
-define("port", default=8888, type=int, help="Server port")
+define("port", default=8282, type=int, help="Server port")
 define("debug", default=False, type=bool, help="Run in debug mode")
 
 
