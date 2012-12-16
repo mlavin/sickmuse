@@ -1,3 +1,3 @@
 "A Collectd Frontend with heart."
 
-__version__ = '0.1.0a'
+__version__ = '0.1.0'
