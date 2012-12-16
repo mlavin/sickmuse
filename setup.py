@@ -29,7 +29,7 @@ setup(
     url='https://github.com/mlavin/sickmuse',
     license='BSD',
     description=u' '.join(__import__('sickmuse').__doc__.splitlines()).strip(),
-    install_requires=('tornado>=2.3, python-rrdtool>=1.4', ),
+    install_requires=('tornado>=2.3', 'python-rrdtool>=1.4', ),
     classifiers=(
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: BSD License',
@@ -42,4 +42,7 @@ setup(
     long_description=read_file('README.rst'),
     tests_require=tests_require,
     zip_safe=False,
+    entry_points={
+      'console_scripts': ('sickmuse = sickmuse.app:main', )
+    },
 )
