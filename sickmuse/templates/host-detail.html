@@ -9,23 +9,27 @@
 {% end %}
 
 {% block content %}
-    <div class="row-fluid">
-        <div class="span12">
-            <h1><i class="icon-hdd"></i> {{ host_name }}</h1>
-            {% for name in host_info['plugins'] %}
-            <div class="row-fluid">
-                <h3 id="{{ name }}-graph" class="plugin-title span6"><i class="icon-bar-chart"></i> {{ name }}</h3>
-                <div id="{{ name }}-graph-canvas-controls" class="span6 graph-controls">
-                    <form action="" method="get">
-                        <button class="btn reset-zoom" style="display: none;">Reset Zoom</button>
-                        <select class="date-range">
-                            {% for value, data in date_range %}
-                                <option value="{{ value }}">{{ data['label'] }}</option>
-                            {% end %}
-                        </select>
-                    </form>
-                </div>
+    <h1><i class="icon-hdd"></i> {{ host_name }}</h1>
+    {% for name in host_info['plugins'] %}
+    <div class="plugin-wrapper">
+        <div class="row-fluid">
+            <h3 id="{{ name }}-graph" class="plugin-title span6"><i class="icon-bar-chart"></i> {{ name }}</h3>
+            <div id="{{ name }}-graph-canvas-controls" class="span6 graph-controls">
+                <form action="" method="get">
+                    <a class="btn reset-zoom" href="#" style="display:none;"><i class="icon-refresh"></i> Reset Zoom</a>
+                    <select class="date-range">
+                        {% for value, data in date_range %}
+                            <option value="{{ value }}">{{ data['label'] }}</option>
+                        {% end %}
+                    </select>
+                    <a class="btn btn-small" title="Expand/collapse" 
+                        data-toggle="collapse" data-target="#{{ name }}-graph-wrapper">
+                        <i class="icon-off"></i>
+                    </a>
+                </form>
             </div>
+        </div>
+        <div class="graph-wrapper collapse in" id="{{ name }}-graph-wrapper">
             <div class="row-fluid">
                 <div id="{{ name }}-graph-canvas" class="plugin-graph span12"
                     data-url="/api/{{ host_name }}/{{ name }}" data-host="{{ host_name }}" data-plugin="{{ name }}"></div>
@@ -35,9 +39,9 @@
                     <ul id="{{ name }}-graph-canvas-legend" class="nav nav-pills"></ul>
                 </div>
             </div>
-            {% end %}
         </div>
     </div>
+    {% end %}
 {% end %}
 
 {% block footer %}
