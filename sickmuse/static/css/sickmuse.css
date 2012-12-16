@@ -1100,10 +1100,13 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .invisible{visibility:hidden;}
 .affix{position:fixed;}
 body{background:url('/static/img/px_tile.png');}
-body>.main{margin-top:20px;margin-bottom:120px;padding:20px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+#main{margin-top:20px;margin-bottom:120px;padding:20px;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
 .navbar .logo{float:left;padding:4px 0;margin-right:5px;}
 .navbar .brand{padding:10px 10px 10px 20px;}
 .navbar .tagline{display:block;padding:10px 0;}
-#footer .container{padding:10px 0;}
+#footer .container-fluid{padding:10px 20px;}
 #home .hosts .host{background:#ffffff;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.25);-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.25);box-shadow:0 0 10px rgba(0, 0, 0, 0.25);-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.25);-moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.25);box-shadow:0 0 10px rgba(0, 0, 0, 0.25);padding:10px;margin-bottom:20px;}
+#host .graph-controls form{float:right;margin:10px 10px 10px 0;}#host .graph-controls form select{margin:0;}
 #host .plugin-graph{height:300px;}
+#host .plugin-legend ul li .box-wrapper{margin-right:4px;padding:1px 2px;}
+#host .plugin-legend ul li .color-box{display:inline-block;width:4px;}

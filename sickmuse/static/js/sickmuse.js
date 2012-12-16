@@ -9,7 +9,7 @@ require.config({
         scrollspy: '../libs/bootstrap/js/bootstrap-scrollspy',
         collapse: '../libs/bootstrap/js/bootstrap-collapse',
         backbone: '../libs/backbone/backbone',
-        underscore: '../libs/underscore/underscore',
+        underscore: '../libs/underscore/underscore'
     },
     shim: {
         flot: {exports: 'jQuery', deps: ['jquery']},
