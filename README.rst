@@ -13,7 +13,7 @@ Requires Python 2.6 or 2.7 and the following Python libraries:
 - tornado >= 2.4 (Available under Apache v2)
 - python-rrdtool >= 1.4 (Available under LGPL v3)
 
-These dependencies do not ship with the library but will be resolved during the install:
+These dependencies do not ship with the library but will be resolved during the install::
 
     pip install sickmuse
 
@@ -23,12 +23,12 @@ Running the Server
 
 Sick Muse runs on the `Tornado <http://www.tornadoweb.org/>`_ webserver which is a
 single-threaded non-blocking server. Once installed you run this server using the ``sickmuse``
-command:
+command::
 
     sickmuse
     
 This will start the server running on the default port ``8282``. You can change the port
-using the ``--port`` option:
+using the ``--port`` option::
 
     sickmuse --port=8080
 
