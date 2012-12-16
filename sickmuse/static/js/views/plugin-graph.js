@@ -20,6 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 '</a>'
             );
             this.legend = $('#' + this.$el.attr('id') + '-legend');
+            this.controls = $('#' + this.$el.attr('id') + '-controls');
             this.plotOptions = {
                 colors: ["#DE5090", "#84C7E2", "#F7BECA", '#F2355B', '#FFDAC9', "#D4EDF4" ],
                 series: {
@@ -42,20 +43,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                     }
                 }
             };
-            this.model = new HostPluginModel({url: this.$el.data('url')});
-            this.listenTo(this.model, "change", this.render);
-            this.model.fetch();
-        },
-        render: function () {
-            var self = this;
-            this.graph(true);
-            // Remove current legend to create a better one
-            var oldLegend = $('.legend', this.$el).detach();
-            $('tr', oldLegend).each(function (index, row) {
-                self.legend.append(
-                    $('<li>').append($('.legendLabel', row).html())
-                );
-            });
+            // Event bindings
             var previousPoint = null;
             var template = this.tooltipTemplate;
             this.$el.bind("plothover", function (event, pos, item) {
@@ -82,6 +70,24 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 $(this).parent('li').toggleClass('disabled');
                 self.model.toggleSeries($(this).data('label'));
                 self.graph(false);
+            });
+            this.controls.on('change', ':input.date-range', function(e) {
+                self.model.fetch({data: {range: $(this).val()}});
+            });
+            this.model = new HostPluginModel({url: this.$el.data('url')});
+            this.listenTo(this.model, "change", this.render);
+            this.model.fetch();
+        },
+        render: function () {
+            var self = this;
+            this.graph(true);
+            // Remove current legend to create a better one
+            self.legend.html('');
+            var oldLegend = $('.legend', this.$el).detach();
+            $('tr', oldLegend).each(function (index, row) {
+                self.legend.append(
+                    $('<li>').append($('.legendLabel', row).html())
+                );
             });
         },
         graph: function(legend) {

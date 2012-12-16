@@ -13,7 +13,18 @@
         <div class="span12">
             <h1><i class="icon-hdd"></i> {{ host_name }}</h1>
             {% for name in host_info['plugins'] %}
-            <h3 id="{{ name }}-graph"><i class="icon-bar-chart"></i> {{ name }}</h3>
+            <div class="row-fluid">
+                <h3 id="{{ name }}-graph" class="plugin-title span6"><i class="icon-bar-chart"></i> {{ name }}</h3>
+                <div id="{{ name }}-graph-canvas-controls" class="span6 graph-controls">
+                    <form action="" method="get">
+                        <select class="date-range">
+                            {% for value, data in date_range %}
+                                <option value="{{ value }}">{{ data['label'] }}</option>
+                            {% end %}
+                        </select>
+                    </form>
+                </div>
+            </div>
             <div class="row-fluid">
                 <div id="{{ name }}-graph-canvas" class="plugin-graph span12"
                     data-url="/api/{{ host_name }}/{{ name }}" data-host="{{ host_name }}" data-plugin="{{ name }}"></div>
