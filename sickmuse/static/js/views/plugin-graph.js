@@ -1,5 +1,5 @@
 define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
-    'flotstack', 'flottime', 'flotresize', 'scrollspy'], function ($, _, Backbone, HostPluginModel) {
+    'flotstack', 'flottime', 'flotresize', 'flotzoom', 'scrollspy'], function ($, _, Backbone, HostPluginModel) {
     var PluginGraphView = Backbone.View.extend({
         initialize: function () {
             var self = this;
@@ -41,7 +41,8 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                         self.model.get("metrics")[label].color = series.color;
                         return labelTemplate({label: label, color: series.color});
                     }
-                }
+                },
+                selection: {mode: "x"}
             };
             // Event bindings
             var previousPoint = null;
@@ -74,6 +75,15 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
             this.controls.on('change', ':input.date-range', function(e) {
                 self.model.fetch({data: {range: $(this).val()}});
             });
+            this.controls.on('click', ':input.reset-zoom', function(e) {
+                e.preventDefault();
+                self.graph(false);
+                $(this).hide();
+            });
+            this.$el.bind("plotselected", function (event, ranges) {
+                self.graph(false, ranges.xaxis.from, ranges.xaxis.to);
+                $(':input.reset-zoom', self.controls).show();
+            });
             this.model = new HostPluginModel({url: this.$el.data('url')});
             this.listenTo(this.model, "change", this.render);
             this.model.fetch();
@@ -90,12 +100,16 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 );
             });
         },
-        graph: function(legend) {
+        graph: function(legend, from, to) {
             var series = _.map(this.model.activeMetrics(), function (data, name) {
                 return {label: name, data: data.series, color: data.color || null};
             });
-            this.plotOptions.legend.show = legend;
-            this.plot = $.plot(this.$el, series, this.plotOptions);
+            var options = $.extend(true, {}, this.plotOptions);
+            options.legend.show = legend;
+            if (to && from) {
+                options.xaxis = $.extend(options.xaxis, {min: from, max: to});
+            }
+            this.plot = $.plot(this.$el, series, options);
         }
     });
     return PluginGraphView;

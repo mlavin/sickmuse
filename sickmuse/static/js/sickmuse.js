@@ -5,6 +5,7 @@ require.config({
         flotstack: '../libs/flot/jquery.flot.stack',
         flottime: '../libs/flot/jquery.flot.time',
         flotresize: '../libs/flot/jquery.flot.resize',
+        flotzoom: '../libs/flot/jquery.flot.selection',
         scrollspy: '../libs/bootstrap/js/bootstrap-scrollspy',
         backbone: '../libs/backbone/backbone',
         underscore: '../libs/underscore/underscore',
@@ -14,6 +15,7 @@ require.config({
         flotstack: {exports: 'jQuery', deps: ['flot']},
         flottime: {exports: 'jQuery', deps: ['flot']},
         flotresize: {exports: 'jQuery', deps: ['flot']},
+        flotzoom: {exports: 'jQuery', deps: ['flot']},
         scrollspy: {exports: 'jQuery', deps: ['jquery']},
         backbone: {
             deps: ['underscore', 'jquery'],
