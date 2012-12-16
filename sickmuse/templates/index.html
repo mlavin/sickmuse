@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1><i class="icon-dashboard"></i> Available Hosts</h1>
-    {% set last = len(plugin_info) - 1 %}
+    {% set last_host = len(plugin_info) - 1 %}
     {% for index, host in enumerate(plugin_info) %}
         {% if index == 0 %}
             <div class="row-fluid hosts">
@@ -14,11 +14,15 @@
         <div class="span6 host">
             <h3><i class="icon-hdd"></i> <a href="/host/{{ host }}">{{ host }}</a></h3>
             <span class="badge">{{ len(plugin_info[host]['plugins']) }} Plugins</span>
-            {{ ', '.join(plugin_info[host]['plugins']) }}
+            {% set plugins = plugin_info[host]['plugins'] %}
+            {% set last_plugin = len(plugins) - 1 %}
+            {% for i, plugin in enumerate(plugins) %}
+                <a href="/host/{{ host }}#{{ plugin }}-graph">{{ plugin }}</a>{% if i != last_plugin %},{% end %}
+            {% end %}
         </div>
-        {% if index % 2 == 1 or index == last  %}
+        {% if index % 2 == 1 or index == last_host %}
             </div>
-            {% if index != last %}
+            {% if index != last_host %}
                 <div class="row-fluid hosts">
             {% end %}
         {% end %}
