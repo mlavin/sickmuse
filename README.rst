@@ -5,7 +5,7 @@ Sick Muse is an open source web application graphing RRD data stored by
 `collectd <http://collectd.org/>`_.
 
 
-Dependencies
+Installation Dependencies
 ----------------------------------------
 
 Requires Python 2.6 or 2.7 and the following Python libraries:
@@ -32,9 +32,11 @@ using the ``--port`` option::
 
     sickmuse --port=8080
 
-The server does not daemonize itself so it is recommneded that you use one of the
-many available daemonization tools such as `Supervisord <http://supervisord.org/>`_,
-`Upstart <http://upstart.ubuntu.com/>`_, or `Runit <http://smarden.org/runit/>`_.
+
+Documentation
+----------------------------------------
+
+You can find a complete set of documentation on ` Read The Docs <https://sickmuse.readthedocs.org>`_.
 
 
 License
