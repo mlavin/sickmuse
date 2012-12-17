@@ -11,4 +11,5 @@ Contents:
     :maxdepth: 2
 
     install
+    overview
     releases
