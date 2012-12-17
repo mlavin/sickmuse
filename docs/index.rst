@@ -12,4 +12,5 @@ Contents:
 
     install
     overview
+    contributing
     releases

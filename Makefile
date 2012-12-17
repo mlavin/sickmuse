@@ -20,3 +20,10 @@ build-js:
 	# Build optimized JS
 	# Requires r.js
 	cd ${STATIC_DIR}/js && r.js -o name=sickmuse out=sickmuse-built.js baseUrl=. mainConfigFile=sickmuse.js
+
+
+lint-js:
+	# Check JS for any problems
+	jshint ${STATIC_DIR}/js/sickmuse.js
+	jshint ${STATIC_DIR}/js/models/host-plugin.js
+	jshint ${STATIC_DIR}/js/views/plugin-graph.js

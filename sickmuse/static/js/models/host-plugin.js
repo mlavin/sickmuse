@@ -23,7 +23,7 @@ define(['underscore', 'backbone'], function (_, Backbone) {
             var metrics = {};
             _.each(this.get('metrics'), function (data, name) {
                 if (data.active) {
-                    metrics[name] = data
+                    metrics[name] = data;
                 }
             });
             return metrics;
