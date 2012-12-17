@@ -8,7 +8,7 @@ installing you should make sure you have Python 2.6 or 2.7 installed as well as
 use `pip <http://www.pip-installer.org/>`_ and
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ as well.
 
-The requirement of `python-rrdtool <https://github.com/pbanaszkiewicz/python-rrdtool>`_ which
+The requirement of `python-rrdtool <https://github.com/pbanaszkiewicz/python-rrdtool>`_
 needs to be compiled. Your system needs to have the appropriate header files prior to installation.
 For Ubuntu based systems you can install the required header files with ``apt-get``::
 

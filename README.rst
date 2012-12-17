@@ -36,7 +36,7 @@ using the ``--port`` option::
 Documentation
 ----------------------------------------
 
-You can find a complete set of documentation on ` Read The Docs <https://sickmuse.readthedocs.org>`_.
+You can find a complete set of documentation on `Read The Docs <https://sickmuse.readthedocs.org>`_.
 
 
 License
