@@ -30,7 +30,7 @@ class HostHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
         self.http_client.fetch(self.get_url('/host/test-host'), self.stop)
         response = self.wait()
         self.assertEqual(response.code, 200)
-        self.assertIn('test-host', response.body)
+        self.assertTrue('test-host' in response.body)
 
     def test_invalid_hostname(self):
         "Return a 404 on invalid hostname"
