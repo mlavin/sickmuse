@@ -45,4 +45,5 @@ setup(
     entry_points={
       'console_scripts': ('sickmuse = sickmuse.app:main', )
     },
+    test_suite='sickmuse.tests',
 )
