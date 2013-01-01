@@ -13,3 +13,27 @@ class RootHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
         self.http_client.fetch(self.get_url('/'), self.stop)
         response = self.wait()
         self.assertEqual(response.code, 200)
+
+
+class HostHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
+
+    def get_app(self):
+        application = APIApplication()
+        # Fake parsed plugin info
+        application.plugin_info = {
+            'test-host': {'plugins': {'foo': 'bar'}},
+        }
+        return application
+
+    def test_valid_hostname(self):
+        "Render valid host info"
+        self.http_client.fetch(self.get_url('/host/test-host'), self.stop)
+        response = self.wait()
+        self.assertEqual(response.code, 200)
+        self.assertIn('test-host', response.body)
+
+    def test_invalid_hostname(self):
+        "Return a 404 on invalid hostname"
+        self.http_client.fetch(self.get_url('/host/invalid-host'), self.stop)
+        response = self.wait()
+        self.assertEqual(response.code, 404)
