@@ -9,6 +9,8 @@ v0.2.0 (Released TBD)
 ---------------------------------------------
 
 - Added project documentation (overview, installation, contributing guide)
+- Started on server-side test suite
+- Font Awesome upgraded to 3.0.0
 
 
 v0.1.0 (Released 12-16-2012)
