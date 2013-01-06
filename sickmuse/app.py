@@ -27,6 +27,7 @@ class APIApplication(Application):
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
+            static_url_prefix = "{0}static/".format(prefix),
             rrd_directory=options.rrd_directory,
         )
         settings.update(kwargs)
@@ -51,7 +52,7 @@ def main():
     parse_command_line()
     # Start application
     application = APIApplication(debug=options.debug, prefix=options.prefix)
-    application.listen(options.port)
+    application.listen(options.port, xheaders=True)
     IOLoop.instance().start()
 
 
