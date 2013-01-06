@@ -5,6 +5,7 @@ import rrdtool
 
 from tornado.web import RequestHandler, HTTPError
 
+from . import __version__
 
 DATE_RANGE_INFO = (
     ('1hr', {'label': 'Past hour', 'start': '-1h', 'resolution': 60}),
@@ -31,6 +32,7 @@ class TemplateHandler(RequestHandler):
             'plugin_info': self.application.plugin_info,
             'debug': self.application.settings.get('debug', False),
             'static_url_prefix': self.application.settings.get('static_url_prefix', '/static/'),
+            '__version__': __version__,
         })
         return namespace
 
