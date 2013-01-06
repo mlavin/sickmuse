@@ -30,6 +30,7 @@ class TemplateHandler(RequestHandler):
         namespace.update({
             'plugin_info': self.application.plugin_info,
             'debug': self.application.settings.get('debug', False),
+            'static_url_prefix': self.application.settings.get('static_url_prefix', '/static/'),
         })
         return namespace
 

@@ -59,6 +59,6 @@
 {% end %}
 
 {% block javascript %}
-<script data-main="/static/js/sickmuse{% if not debug %}-built{% end %}" 
+<script data-main="{{ static_url_prefix }}js/sickmuse{% if not debug %}-built{% end %}" 
     src="{{ static_url('libs/requirejs/require.js') }}"></script>
 {% end %}

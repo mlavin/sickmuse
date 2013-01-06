@@ -27,7 +27,7 @@ class APIApplication(Application):
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
-            static_url_prefix = "{0}static/".format(prefix),
+            static_url_prefix="{0}static/".format(prefix),
             rrd_directory=options.rrd_directory,
         )
         settings.update(kwargs)
