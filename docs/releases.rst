@@ -12,6 +12,7 @@ v0.2.0 (Released TBD)
 - Started on server-side test suite
 - Added ``rrd_directory`` configuration option
 - Font Awesome upgraded to 3.0.0
+- Added ``prefix`` configuration option
 
 
 v0.1.0 (Released 12-16-2012)
