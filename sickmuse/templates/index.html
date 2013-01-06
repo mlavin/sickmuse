@@ -12,12 +12,12 @@
             <div class="row-fluid hosts">
         {% end %}
         <div class="span6 host">
-            <h3><i class="icon-hdd"></i> <a href="/host/{{ host }}">{{ host }}</a></h3>
+            <h3><i class="icon-hdd"></i> <a href="{{ reverse_url('host-detail', host) }}">{{ host }}</a></h3>
             <span class="badge">{{ len(plugin_info[host]['plugins']) }} Plugins</span>
             {% set plugins = plugin_info[host]['plugins'] %}
             {% set last_plugin = len(plugins) - 1 %}
             {% for i, plugin in enumerate(plugins) %}
-                <a href="/host/{{ host }}#{{ plugin }}-graph">{{ plugin }}</a>{% if i != last_plugin %},{% end %}
+                <a href="{{ reverse_url('host-detail', host) }}#{{ plugin }}-graph">{{ plugin }}</a>{% if i != last_plugin %},{% end %}
             {% end %}
         </div>
         {% if index % 2 == 1 or index == last_host %}

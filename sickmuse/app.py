@@ -3,7 +3,7 @@ import os
 
 from tornado.ioloop import IOLoop
 from tornado.options import define, parse_command_line, options
-from tornado.web import Application
+from tornado.web import Application, url
 
 from .handlers import RootHandler, HostHandler, MetricAPIHandler
 
@@ -11,15 +11,17 @@ from .handlers import RootHandler, HostHandler, MetricAPIHandler
 define("port", default=8282, type=int, help="Server port")
 define("debug", default=False, type=bool, help="Run in debug mode")
 define("rrd_directory", default="/var/lib/collectd/rrd/", help="RRD file storage location")
+define("prefix", default="", help="URL prefix")
 
 
 class APIApplication(Application):
 
     def __init__(self, **kwargs):
+        prefix = "/{0}/".format(kwargs.get('prefix', "").strip("/")).replace("//", "/")
         handlers = [
-            (r"/", RootHandler),
-            (r"/host/(.*)", HostHandler),
-            (r"/api/(.*)/(.*)", MetricAPIHandler),
+            url(r"{0}".format(prefix), RootHandler, name='index'),
+            url(r"{0}host/(.*)".format(prefix), HostHandler, name='host-detail'),
+            url(r"{0}api/(.*)/(.*)".format(prefix), MetricAPIHandler, name='api-detail'),
         ]
         # Default settings
         settings = dict(
@@ -48,7 +50,7 @@ def main():
     # Setup and parse options
     parse_command_line()
     # Start application
-    application = APIApplication(debug=options.debug)
+    application = APIApplication(debug=options.debug, prefix=options.prefix)
     application.listen(options.port)
     IOLoop.instance().start()
 
