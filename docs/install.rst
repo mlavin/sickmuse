@@ -43,6 +43,8 @@ using the ``--port`` option::
 
     sickmuse --port=8080
 
+See a :doc:`full list of configuration options</configuration>`.
+
 The server does not daemonize itself so it is recommneded that you use one of the
 many available daemonization tools such as `Supervisord <http://supervisord.org/>`_,
 `Upstart <http://upstart.ubuntu.com/>`_, or `Runit <http://smarden.org/runit/>`_. An

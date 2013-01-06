@@ -10,6 +10,7 @@ v0.2.0 (Released TBD)
 
 - Added project documentation (overview, installation, contributing guide)
 - Started on server-side test suite
+- Added ``rrd_directory`` configuration option
 - Font Awesome upgraded to 3.0.0
 
 

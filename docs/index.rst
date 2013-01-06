@@ -12,5 +12,6 @@ Contents:
 
     install
     overview
+    configuration
     contributing
     releases

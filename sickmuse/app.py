@@ -10,6 +10,7 @@ from .handlers import RootHandler, HostHandler, MetricAPIHandler
 
 define("port", default=8282, type=int, help="Server port")
 define("debug", default=False, type=bool, help="Run in debug mode")
+define("rrd_directory", default="/var/lib/collectd/rrd/", help="RRD file storage location")
 
 
 class APIApplication(Application):
@@ -24,7 +25,7 @@ class APIApplication(Application):
         settings = dict(
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
-            rrd_directory="/var/lib/collectd/rrd/",
+            rrd_directory=options.rrd_directory,
         )
         settings.update(kwargs)
         super(APIApplication, self).__init__(handlers, **settings)
