@@ -13,6 +13,7 @@ v0.2.0 (Released TBD)
 - Added ``rrd_directory`` configuration option
 - Font Awesome upgraded to 3.0.0
 - Added ``prefix`` configuration option
+- Added graceful server shutdown
 
 
 v0.1.0 (Released 12-16-2012)
