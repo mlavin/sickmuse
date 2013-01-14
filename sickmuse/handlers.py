@@ -24,6 +24,17 @@ DATE_RANGE_INFO = (
 DATE_RANGE_MAP = dict(DATE_RANGE_INFO)
 
 
+UNIT_MAP = {
+    # Metric name --> Unit
+    'memory': 'bytes',
+    'partition': 'bytes',
+    'pg_db_size': 'bytes',
+    'ps_rss': 'bytes',
+    'swap': 'bytes',
+    'vs_memory': 'bytes',
+}
+
+
 class TemplateHandler(RequestHandler):
     "Add common elements to the template namespace."
 
@@ -66,7 +77,10 @@ class MetricAPIHandler(RequestHandler):
         if metric not in plugins:
             raise HTTPError(404, 'Plugin not found')
         instances = plugins[metric]
-        cleaned_data = {}
+        cleaned_data = {
+            'units': UNIT_MAP.get(metric),
+        }
+        instance_data = {}
         offset = self.get_argument('range', default='1hr')
         if offset not in DATE_RANGE_MAP:
             raise HTTPError(400, 'Invalid date range')
@@ -83,16 +97,17 @@ class MetricAPIHandler(RequestHandler):
             default = {'start': start, 'end': end, 'resolution': resolution, 'timeline': []}
             if len(metrics) == 1:
                 key = instance
-                cleaned_data[key] = default
+                instance_data[key] = default
             else:
                 for name in metrics:
                     key = '%s-%s' % (instance, name)
-                    cleaned_data[key] = default
+                    instance_data[key] = default
             for item in data:
                 for i, name in enumerate(metrics):
                     if len(metrics) == 1:
                         key = instance
                     else:
                         key = '%s-%s' % (instance, name)
-                    cleaned_data[key]['timeline'].append(item[i])
+                    instance_data[key]['timeline'].append(item[i])
+        cleaned_data['instances'] = instance_data
         self.write(cleaned_data)

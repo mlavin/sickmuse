@@ -4,7 +4,7 @@ define(['underscore', 'backbone'], function (_, Backbone) {
             return this.get('url');
         },
         parse: function(response) {
-            var metrics = response;
+            var metrics = response.instances;
             var interval = null;
             var series = null;
             _.each(metrics, function (metric, key) {
@@ -17,7 +17,7 @@ define(['underscore', 'backbone'], function (_, Backbone) {
                 metric.series = series;
                 metric.active = true;
             });
-            return {'metrics': metrics};
+            return {'metrics': metrics, 'units': response.units || null};
         },
         activeMetrics: function () {
             var metrics = {};
