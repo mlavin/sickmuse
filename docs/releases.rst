@@ -14,6 +14,7 @@ v0.2.0 (Released TBD)
 - Font Awesome upgraded to 3.0.0
 - Added ``prefix`` configuration option
 - Added graceful server shutdown
+- Fixed issue with relative imports breaking server debug mode
 
 
 v0.1.0 (Released 12-16-2012)
