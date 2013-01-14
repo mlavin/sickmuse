@@ -22,6 +22,21 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 );
                 this.legend = $('#' + this.$el.attr('id') + '-legend');
                 this.controls = $('#' + this.$el.attr('id') + '-controls');
+                this.units = {
+                    'bytes': {
+                        tickDecimals: 2, 
+                        tickFormatter: function suffixFormatter(val, axis) {
+                            var sizes = ['', 'KB', 'MB', 'GB', 'TB'];
+                            var posttxt = 0;
+                            if (val == 0) return '0';
+                            while (val >= 1024) {
+                                posttxt++;
+                                val = val / 1024;
+                            }
+                            return val.toFixed(axis.tickDecimals) + " " + sizes[posttxt];
+                        }
+                    }
+                };
                 this.plotOptions = {
                     colors: ["#DE5090", "#84C7E2", "#F7BECA", '#F2355B', '#FFDAC9', "#D4EDF4" ],
                     series: {
@@ -35,7 +50,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                         shadowSize: 1
                     },
                     xaxis: {mode: "time", timezone: "browser"},
-                    yaxis: {tickDecimals: 3},
+                    yaxis: {},
                     grid: {hoverable: true, clickable: true},
                     legend: {
                         labelFormatter: function(label, series) {
@@ -53,12 +68,19 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                         if (previousPoint !== item.dataIndex) {
                             previousPoint = item.dataIndex;
                             $("#tooltip").remove();
-                            var x = item.datapoint[0].toFixed(2),
-                                y = item.datapoint[1].toFixed(2);
+                            var x = item.datapoint[0], y = 0,
+                                datapoint = item.datapoint,
+                                series = item.series,
+                                yaxis = item.series.yaxis;
+                            if (series.stack) {
+                                y = item.datapoint[1] - item.datapoint[2];
+                            } else {
+                                y = item.datapoint[1];
+                            }
                             $('body').append(template({
                                 top: item.pageY + 5,
                                 left: item.pageX + 5,
-                                content: item.series.label + " " + y
+                                content: item.series.label + " " + yaxis.tickFormatter(y, yaxis)
                             }));
                         }
                     }
@@ -107,6 +129,11 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                 options.legend.show = legend;
                 if (to && from) {
                     options.xaxis = $.extend(options.xaxis, {min: from, max: to});
+                }
+                var unit = this.model.get('units');
+                var format = this.units[unit];
+                if (unit && format) {
+                    options.yaxis = $.extend(options.yaxis, format);
                 }
                 this.plot = $.plot(this.$el, series, options);
                 if (from && to ) {
