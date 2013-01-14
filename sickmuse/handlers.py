@@ -5,7 +5,8 @@ import rrdtool
 
 from tornado.web import RequestHandler, HTTPError
 
-from . import __version__
+from sickmuse import __version__
+
 
 DATE_RANGE_INFO = (
     ('1hr', {'label': 'Past hour', 'start': '-1h', 'resolution': 60}),

@@ -11,7 +11,7 @@ from tornado.process import task_id
 from tornado.options import define, parse_command_line, options
 from tornado.web import Application, url
 
-from .handlers import RootHandler, HostHandler, MetricAPIHandler
+from sickmuse.handlers import RootHandler, HostHandler, MetricAPIHandler
 
 
 define("port", default=8282, type=int, help="Server port")
