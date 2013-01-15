@@ -1,12 +1,13 @@
 from tornado.testing import LogTrapTestCase, AsyncHTTPTestCase
 
-from ..app import APIApplication
+from .base import ApplicationMixin
 
 
-class RootHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
+class BaseHandlerTest(ApplicationMixin, LogTrapTestCase, AsyncHTTPTestCase):
+    "Common base class for testing handlers."
 
-    def get_app(self):
-        return APIApplication()
+
+class RootHandlerTest(BaseHandlerTest):
 
     def test_render(self):
         "Render the server root"
@@ -15,15 +16,10 @@ class RootHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
         self.assertEqual(response.code, 200)
 
 
-class HostHandlerTest(LogTrapTestCase, AsyncHTTPTestCase):
+class HostHandlerTest(BaseHandlerTest):
 
-    def get_app(self):
-        application = APIApplication()
-        # Fake parsed plugin info
-        application.plugin_info = {
-            'test-host': {'plugins': {'foo': 'bar'}},
-        }
-        return application
+    def get_plugins(self):
+        return {'test-host': {'plugins': {'foo': 'bar'}}}
 
     def test_valid_hostname(self):
         "Render valid host info"
