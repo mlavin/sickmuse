@@ -34,7 +34,6 @@ class APIApplication(Application):
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
             static_url_prefix="{0}static/".format(prefix),
-            rrd_directory=options.rrd_directory,
         )
         settings.update(kwargs)
         super(APIApplication, self).__init__(handlers, **settings)
@@ -99,7 +98,9 @@ def main():
     # Setup and parse options
     parse_command_line()
     # Create application
-    application = APIApplication(debug=options.debug, prefix=options.prefix)
+    application = APIApplication(
+        debug=options.debug, prefix=options.prefix, rrd_directory=options.rrd_directory
+    )
     # Create server
     server = HTTPServer(application, xheaders=True)
     # Attach signal handlers
