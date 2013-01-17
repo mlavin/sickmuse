@@ -28,7 +28,7 @@ define(['jquery', 'underscore', 'backbone', 'models/host-plugin', 'flot',
                         tickFormatter: function suffixFormatter(val, axis) {
                             var sizes = ['', 'KB', 'MB', 'GB', 'TB'];
                             var posttxt = 0;
-                            if (val == 0) return '0';
+                            if (val === 0) return '0';
                             while (val >= 1024) {
                                 posttxt++;
                                 val = val / 1024;
