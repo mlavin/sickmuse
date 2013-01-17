@@ -4,6 +4,11 @@ Sick Muse - Collectd Front-end
 Sick Muse is an open source web application graphing RRD data stored by
 `collectd <http://collectd.org/>`_.
 
+.. image::
+    https://secure.travis-ci.org/mlavin/sickmuse.png?branch=master
+    :alt: Build Status
+        :target: https://secure.travis-ci.org/mlavin/sickmuse
+
 
 Installation Dependencies
 ----------------------------------------
