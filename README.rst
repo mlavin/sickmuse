@@ -41,20 +41,17 @@ using the ``--port`` option::
 Screenshots
 ----------------------------------------
 
-Homepage/Host Listing
-________________________________________
-
-.. image:: ../docs/_static/home.png
+.. figure:: https://raw.github.com/mlavin/sickmuse/master/docs/_static/home.png
     :alt: Homepage screenshot
     :width: 600
 
+    Homepage/Host Listing
 
-Host Details
-________________________________________
-
-.. image:: ../docs/_static/host.png
+.. figure:: https://raw.github.com/mlavin/sickmuse/master/docs/_static/host.png
     :alt: Host detail screenshot
     :width: 600
+
+    Host Details
 
 
 Documentation
