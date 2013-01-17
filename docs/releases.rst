@@ -5,10 +5,10 @@ Below is a list of all the public releases and a summary of the related changes
 in those releases.
 
 
-v0.2.0 (Released TBD)
+v0.2.0 (Released 01-17-2013)
 ---------------------------------------------
 
-- Added project documentation (overview, installation, contributing guide)
+- Added project documentation (overview, sceenshots, installation, contributing guide)
 - Started on server-side test suite and Travis CI integration
 - Added ``rrd_directory`` configuration option
 - Font Awesome upgraded to 3.0.0
