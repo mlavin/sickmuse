@@ -9,12 +9,13 @@ v0.2.0 (Released TBD)
 ---------------------------------------------
 
 - Added project documentation (overview, installation, contributing guide)
-- Started on server-side test suite
+- Started on server-side test suite and Travis CI integration
 - Added ``rrd_directory`` configuration option
 - Font Awesome upgraded to 3.0.0
 - Added ``prefix`` configuration option
 - Added graceful server shutdown
 - Fixed issue with relative imports breaking server debug mode
+- Fixed missing static resources when running in debug mode from PyPi install
 
 
 v0.1.0 (Released 12-16-2012)
