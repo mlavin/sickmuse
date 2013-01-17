@@ -38,6 +38,25 @@ using the ``--port`` option::
     sickmuse --port=8080
 
 
+Screenshots
+----------------------------------------
+
+Homepage/Host Listing
+________________________________________
+
+.. image:: ../docs/_static/home.png
+    :alt: Homepage screenshot
+    :width: 600
+
+
+Host Details
+________________________________________
+
+.. image:: ../docs/_static/host.png
+    :alt: Host detail screenshot
+    :width: 600
+
+
 Documentation
 ----------------------------------------
 
