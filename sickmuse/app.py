@@ -15,6 +15,7 @@ from sickmuse.handlers import RootHandler, HostHandler, MetricAPIHandler
 
 
 define("port", default=8282, type=int, help="Server port")
+define("listen", default='', type=str, help="Server listen address")
 define("debug", default=False, type=bool, help="Run in debug mode")
 define("rrd_directory", default="/var/lib/collectd/rrd/", help="RRD file storage location")
 define("prefix", default="", help="URL prefix")
@@ -108,7 +109,7 @@ def main():
     # This will also catch KeyboardInterrupt exception
     signal.signal(signal.SIGINT, lambda sig, frame: shutdown(server, False))
     # Start the server
-    server.listen(options.port, "")
+    server.listen(options.port, options.listen)
     IOLoop.instance().start()
 
 
