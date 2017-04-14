@@ -4,6 +4,11 @@ import os
 import shutil
 import tempfile
 
+try:
+    from unittest.mock import patch, Mock
+except ImportError:
+    from mock import patch, Mock
+
 from ..app import APIApplication
 
 

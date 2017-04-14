@@ -9,6 +9,8 @@ cache:
 
 env:
   - TOXENV=py27-tornado2
+  - TOXENV=py27-tornado3
+  - TOXENV=py27-tornado4
   - TOXENV=docs
 
 before_install:

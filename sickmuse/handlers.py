@@ -1,4 +1,3 @@
-import glob
 import os
 
 import rrdtool
@@ -50,13 +49,13 @@ class TemplateHandler(RequestHandler):
 
 
 class RootHandler(TemplateHandler):
-    
+
     def get(self):
         self.render("index.html")
 
 
 class HostHandler(TemplateHandler):
-    
+
     def get(self, host_name):
         if host_name not in self.application.plugin_info:
             raise HTTPError(404, 'Host not found')
@@ -69,7 +68,7 @@ class HostHandler(TemplateHandler):
 
 
 class MetricAPIHandler(RequestHandler):
-    
+
     def get(self, host, metric):
         if host not in self.application.plugin_info:
             raise HTTPError(404, 'Host not found')
@@ -92,16 +91,19 @@ class MetricAPIHandler(RequestHandler):
             ))
             start = str(date_range['start'])
             res = str(date_range['resolution'])
-            period, metrics, data = rrdtool.fetch(load_file, 'AVERAGE', '--start', start, '--resolution', res)
+            period, metrics, data = rrdtool.fetch(
+                load_file, 'AVERAGE', '--start', start, '--resolution', res)
             start, end, resolution = period
-            default = {'start': start, 'end': end, 'resolution': resolution, 'timeline': []}
+            default = {'start': start, 'end': end, 'resolution': resolution}
             if len(metrics) == 1:
                 key = instance
-                instance_data[key] = default
+                instance_data[key] = default.copy()
+                instance_data[key]['timeline'] = []
             else:
                 for name in metrics:
                     key = '%s-%s' % (instance, name)
-                    instance_data[key] = default
+                    instance_data[key] = default.copy()
+                    instance_data[key]['timeline'] = []
             for item in data:
                 for i, name in enumerate(metrics):
                     if len(metrics) == 1:
