@@ -3,7 +3,7 @@ Description=Sick Muse is an open source web application graphing RRD data stored
 After=local-fs.target network.target
 
 [Service]
-ExecStart=/usr/bin/sickmuse --rrd_directory=/var/lib/collectd/ --logging=warning
+ExecStart=/usr/bin/sickmuse --rrd_directory=/var/lib/collectd/rrd/ --logging=warning
 User=http
 Group=http
 
