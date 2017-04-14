@@ -10,6 +10,7 @@ docs/_build/*
 dist/*
 build/*
 *.egg-info/*
+.eggs/*
 sickmuse/static/libs/
 sickmuse/static/css/sickmuse.css
 sickmuse/static/js/sickmuse-built.js
