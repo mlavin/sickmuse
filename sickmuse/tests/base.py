@@ -7,7 +7,7 @@ import tempfile
 try:
     from unittest.mock import patch, Mock
 except ImportError:
-    from mock import patch, Mock
+    from mock import patch, Mock  # noqa
 
 from ..app import APIApplication
 

@@ -7,7 +7,6 @@ import time
 
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop, PeriodicCallback
-from tornado.process import task_id
 from tornado.options import define, parse_command_line, options
 from tornado.web import Application, url
 
@@ -40,7 +39,7 @@ class APIApplication(Application):
         super(APIApplication, self).__init__(handlers, **settings)
         rrd_directory = os.path.abspath(self.settings['rrd_directory'])
         # From base directory: host/plugin/instance.rrd
-        self.plugin_info = {} # Host --> Plugins --> Instances
+        self.plugin_info = {}  # Host --> Plugins --> Instances
         for name in glob.glob(u"%s/*/*/*.rrd" % rrd_directory):
             name = name.replace(u"%s/" % rrd_directory, '')
             host, plugin = os.path.split(os.path.dirname(name))
@@ -113,5 +112,5 @@ def main():
     IOLoop.instance().start()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

@@ -1,7 +1,8 @@
 import os
 import unittest
 
-from .base import ApplicationMixin
+from ..app import shutdown
+from .base import ApplicationMixin, Mock
 
 
 class ApplicationTest(ApplicationMixin, unittest.TestCase):
@@ -77,3 +78,20 @@ class ApplicationTest(ApplicationMixin, unittest.TestCase):
         self.assertTrue(test_plugin in plugins)
         self.assertTrue(test_instance in plugins[test_plugin])
         self.assertFalse(other_instance in plugins[test_plugin])
+
+
+class ShutdownTestCase(unittest.TestCase):
+    """Testing application shutdown."""
+
+    def test_graceful_shutdown(self):
+        """Graceful shutdown is the default."""
+        server = Mock()
+        shutdown(server)
+        server.stop.assert_called_once_with()
+
+    def test_forceful_shutdown(self):
+        """Immediately shutdown the server."""
+        server = Mock()
+        with self.assertRaises(SystemExit):
+            shutdown(server, graceful=False)
+        server.stop.assert_called_once_with()
